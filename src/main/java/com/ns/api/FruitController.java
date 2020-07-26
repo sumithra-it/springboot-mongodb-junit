@@ -15,15 +15,31 @@ public class FruitController {
 
     public FruitController(FruitService fruitService) {this.fruitService = fruitService;}
 
-    @PostMapping("/fruits")
-    public ResponseEntity addFruit(@RequestBody FruitRequest fruitRequest) {
-        log.info("Request : {}", fruitRequest);
-        fruitService.saveFruit(fruitRequest.toFruitModel());
+    @PostMapping("/fruit")
+    public ResponseEntity addFruit(@RequestBody FruitModel fruitModel) {
+        log.info("Request : {}", fruitModel);
+        fruitService.saveFruit(fruitModel);
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
-    @GetMapping("/fruits")
+    @GetMapping("/fruit")
     public List<FruitModel> getAllFruit() {
         return fruitService.findAll();
     }
+    
+    @GetMapping("/fruit/name/{name}")
+    public List<FruitModel> getFruitByName(@PathVariable("name") String name) {
+        return fruitService.findByName(name);
+    }
+    @GetMapping("/fruit/color/{color}")
+    public List<FruitModel> getFruitByColor(@PathVariable("color") String color) {
+        return fruitService.findByColor(color);
+    }
+    
+
+    @GetMapping("/fruit/stock/{stock}")
+    public List<FruitModel> getFruitwithStock(@PathVariable("stock") int stock) {
+    	return fruitService.getFruitwithStock(stock);
+    }
+    
 }

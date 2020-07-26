@@ -18,4 +18,16 @@ public class FruitService {
     public List<FruitModel> findAll() {
         return fruitRepository.findAll();
     }
+    
+    public List<FruitModel> findByName(String name) {
+    	return fruitRepository.findByName(name);
+    }
+    
+    public List<FruitModel> findByColor(String color) {
+    	return fruitRepository.findByColor(color);
+    }
+    
+    public List<FruitModel> getFruitwithStock(int stock) {
+    	return fruitRepository.getFruitwithStock(stock);
+    }
 }
